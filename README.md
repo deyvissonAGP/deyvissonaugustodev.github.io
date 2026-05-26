@@ -4,7 +4,7 @@
 
 Site de portfólio pessoal desenvolvido com HTML, CSS e JavaScript puro — sem frameworks, sem dependências, pronto para produção.
 
-🌐 **[deyvissonauto.github.io](https://deyvissonauto.github.io)**
+🌐 **[deyvissonauto.github.io](https://deyvissonaugustodev.github.io)**
 
 ---
 
