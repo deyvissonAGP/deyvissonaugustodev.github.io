@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Full Stack Developer | DevOps | AI Automation Engineer — especialista em Laravel, Angular, Docker e automação inteligente.">
+<meta name="keywords" content="Full Stack Developer, Laravel, Angular, Docker, DevOps, PHP, PostgreSQL, n8n, IA">
+<meta property="og:title" content="Dev Portfolio — Full Stack & DevOps Engineer">
+<meta property="og:description" content="Desenvolvedor Full Stack com foco em backend PHP/Laravel, Angular 19, Docker e automação com IA.">
+<title>Deyvisson Augusto Pinheiro Conceicao — Full Stack & DevOps</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-base: #07080f;
+  --bg-surface: #0d0f1a;
+  --bg-card: rgba(255,255,255,0.028);
+  --bg-card-hover: rgba(255,255,255,0.055);
+  --border: rgba(255,255,255,0.07);
+  --border-hover: rgba(255,255,255,0.15);
+  --accent: #00d4ff;
+  --accent2: #7c5cfc;
+  --accent3: #00ffb3;
+  --text: #e4e8f1;
+  --text-muted: #6b7a99;
+  --text-faint: #3a4460;
+  --font: 'Outfit', sans-serif;
+  --mono: 'DM Mono', monospace;
+  --radius: 14px;
+  --radius-sm: 8px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:var(--font);
+  background:var(--bg-base);
+  color:var(--text);
+  line-height:1.65;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* ── CURSOR ── */
+#cursor{position:fixed;width:10px;height:10px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s,opacity .2s;mix-blend-mode:screen}
+#cursor-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(0,212,255,.35);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .08s,width .2s,height .2s,border-color .2s}
+body:hover #cursor{opacity:1}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg-base)}
+::-webkit-scrollbar-thumb{background:rgba(0,212,255,.25);border-radius:4px}
+
+/* ── BG GRID ── */
+.bg-grid{
+  position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    linear-gradient(rgba(0,212,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,212,255,.025) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+.bg-orb{
+  position:fixed;border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0;
+}
+.orb1{width:600px;height:600px;top:-200px;right:-150px;background:rgba(124,92,252,.12)}
+.orb2{width:500px;height:500px;bottom:-100px;left:-150px;background:rgba(0,212,255,.08)}
+.orb3{width:300px;height:300px;top:50%;left:50%;background:rgba(0,255,179,.05)}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:0 clamp(1rem,4vw,3rem);
+  height:64px;display:flex;align-items:center;justify-content:space-between;
+  background:rgba(7,8,15,.7);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  transition:all .3s;
+}
+.nav-logo{
+  font-family:var(--mono);
+  font-size:.85rem;
+  color:var(--accent);
+  letter-spacing:.05em;
+}
+.nav-logo span{color:var(--text-muted)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{
+  font-size:.85rem;font-weight:500;
+  color:var(--text-muted);text-decoration:none;
+  letter-spacing:.03em;
+  transition:color .2s;
+  position:relative;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;
+  background:var(--accent);transition:width .25s;
+}
+.nav-links a:hover{color:var(--text)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{
+  padding:.45rem 1.1rem;
+  background:transparent;
+  border:1px solid var(--accent);
+  color:var(--accent);
+  font-family:var(--font);font-size:.8rem;font-weight:600;
+  border-radius:var(--radius-sm);
+  cursor:pointer;text-decoration:none;
+  transition:all .2s;letter-spacing:.05em;
+}
+.nav-cta:hover{background:var(--accent);color:var(--bg-base)}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.burger span{width:22px;height:1.5px;background:var(--text);transition:all .3s}
+
+/* ── LAYOUT ── */
+main{position:relative;z-index:1}
+section{padding:clamp(5rem,10vw,8rem) clamp(1.5rem,6vw,5rem)}
+.container{max-width:1160px;margin:0 auto}
+.section-label{
+  font-family:var(--mono);font-size:.75rem;font-weight:500;
+  color:var(--accent);letter-spacing:.2em;text-transform:uppercase;
+  margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem;
+}
+.section-label::before{content:'';width:24px;height:1px;background:var(--accent)}
+h2.section-title{
+  font-size:clamp(2rem,4vw,2.8rem);font-weight:700;
+  color:var(--text);line-height:1.15;margin-bottom:1rem;
+  letter-spacing:-.03em;
+}
+.section-sub{color:var(--text-muted);font-size:1.05rem;max-width:540px;margin-bottom:3.5rem}
+
+/* ── HERO ── */
+#hero{
+  min-height:100vh;display:flex;align-items:center;
+  padding-top:100px;
+  padding-bottom:4rem;
+  padding-left:clamp(1.5rem,6vw,5rem);
+  padding-right:clamp(1.5rem,6vw,5rem);
+}
+.hero-inner{max-width:1160px;margin:0 auto;width:100%}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.35rem 1rem;border:1px solid rgba(0,212,255,.25);
+  border-radius:100px;
+  background:rgba(0,212,255,.05);
+  font-family:var(--mono);font-size:.75rem;color:var(--accent);
+  margin-bottom:2rem;letter-spacing:.08em;
+}
+.hero-badge .dot{width:6px;height:6px;background:var(--accent3);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.hero-title{
+  font-size:clamp(2.8rem,7vw,5.5rem);
+  font-weight:800;line-height:1.05;
+  letter-spacing:-.04em;
+  margin-bottom:1.25rem;
+}
+.hero-title .name{
+  background:linear-gradient(135deg,#ffffff 0%,rgba(255,255,255,.65) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-title .role{
+  background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  display:block;
+}
+.hero-desc{
+  font-size:1.15rem;color:var(--text-muted);
+  max-width:580px;margin-bottom:2.5rem;line-height:1.7;
+}
+.hero-desc strong{color:var(--text)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:4rem}
+.btn-primary{
+  padding:.8rem 2rem;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;font-family:var(--font);font-weight:600;font-size:.9rem;
+  border:none;border-radius:var(--radius-sm);cursor:pointer;
+  text-decoration:none;transition:all .25s;
+  box-shadow:0 0 30px rgba(0,212,255,.2);
+  letter-spacing:.02em;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(0,212,255,.35)}
+.btn-ghost{
+  padding:.8rem 1.8rem;
+  background:transparent;border:1px solid var(--border-hover);
+  color:var(--text);font-family:var(--font);font-weight:500;font-size:.9rem;
+  border-radius:var(--radius-sm);cursor:pointer;
+  text-decoration:none;transition:all .25s;letter-spacing:.02em;
+  display:flex;align-items:center;gap:.5rem;
+}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,212,255,.05)}
+.hero-stats{display:flex;flex-wrap:wrap;gap:3rem}
+.hero-stat .num{
+  font-size:2.2rem;font-weight:800;
+  background:linear-gradient(135deg,var(--text),rgba(255,255,255,.5));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1;margin-bottom:.25rem;letter-spacing:-.04em;
+}
+.hero-stat .lbl{font-size:.8rem;color:var(--text-muted);font-family:var(--mono);letter-spacing:.05em}
+
+/* ── ABOUT ── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.about-text p{color:var(--text-muted);margin-bottom:1.25rem;font-size:1rem;line-height:1.75}
+.about-text p strong{color:var(--text)}
+.timeline{margin-top:2.5rem}
+.tl-item{
+  display:flex;gap:1.25rem;padding-bottom:2rem;
+  position:relative;
+}
+.tl-item:not(:last-child)::before{
+  content:'';position:absolute;left:7px;top:18px;bottom:0;
+  width:1px;background:linear-gradient(var(--border-hover),transparent);
+}
+.tl-dot{
+  width:15px;height:15px;min-width:15px;
+  border-radius:50%;border:2px solid var(--accent);
+  background:var(--bg-base);margin-top:3px;
+  box-shadow:0 0 10px rgba(0,212,255,.3);
+}
+.tl-year{font-family:var(--mono);font-size:.75rem;color:var(--accent);margin-bottom:.25rem}
+.tl-title{font-weight:600;font-size:.95rem;color:var(--text);margin-bottom:.2rem}
+.tl-desc{font-size:.85rem;color:var(--text-muted)}
+.about-cards{display:flex;flex-direction:column;gap:1rem}
+.a-card{
+  padding:1.25rem 1.5rem;
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:var(--radius);transition:all .25s;
+}
+.a-card:hover{background:var(--bg-card-hover);border-color:var(--border-hover);transform:translateX(4px)}
+.a-card-icon{font-size:1.5rem;margin-bottom:.6rem}
+.a-card-title{font-weight:600;font-size:.9rem;color:var(--text);margin-bottom:.3rem}
+.a-card-desc{font-size:.82rem;color:var(--text-muted)}
+
+/* ── STACK ── */
+#stack{background:var(--bg-surface)}
+.stack-cats{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2.5rem}
+.cat-btn{
+  padding:.4rem 1rem;border-radius:100px;
+  border:1px solid var(--border);background:transparent;
+  font-family:var(--font);font-size:.8rem;color:var(--text-muted);
+  cursor:pointer;transition:all .2s;
+}
+.cat-btn.active,.cat-btn:hover{
+  border-color:var(--accent);color:var(--accent);
+  background:rgba(0,212,255,.07);
+}
+.stack-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+  gap:1rem;
+}
+.stack-card{
+  padding:1.25rem;
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:var(--radius);text-align:center;
+  transition:all .25s;cursor:default;
+  position:relative;overflow:hidden;
+}
+.stack-card::before{
+  content:'';position:absolute;inset:0;opacity:0;
+  transition:opacity .3s;
+  background:radial-gradient(circle at 50% 0%,var(--card-glow,rgba(0,212,255,.08)),transparent 70%);
+}
+.stack-card:hover{border-color:var(--border-hover);transform:translateY(-3px)}
+.stack-card:hover::before{opacity:1}
+.stack-icon{font-size:2rem;margin-bottom:.7rem;line-height:1}
+.stack-name{font-size:.85rem;font-weight:600;color:var(--text);margin-bottom:.3rem}
+.stack-level{font-size:.72rem;color:var(--text-muted);font-family:var(--mono);margin-bottom:.7rem}
+.skill-bar{height:2px;background:rgba(255,255,255,.07);border-radius:2px;overflow:hidden}
+.skill-fill{height:100%;border-radius:2px;transition:width 1s ease}
+
+/* ── PROJECTS ── */
+.proj-filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2.5rem}
+.proj-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+  gap:1.5rem;
+}
+.proj-card{
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:var(--radius);overflow:hidden;
+  transition:all .3s;position:relative;
+}
+.proj-card:hover{border-color:rgba(0,212,255,.3);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.proj-thumb{
+  height:180px;position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  font-size:3rem;
+}
+.proj-thumb-bg{
+  position:absolute;inset:0;
+  opacity:.9;
+}
+.proj-thumb-icon{position:relative;z-index:1;font-size:3.5rem;filter:drop-shadow(0 4px 20px rgba(0,0,0,.5))}
+.proj-body{padding:1.5rem}
+.proj-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.9rem}
+.proj-tag{
+  padding:.2rem .7rem;border-radius:100px;
+  font-size:.7rem;font-family:var(--mono);font-weight:500;letter-spacing:.03em;
+  background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);color:var(--accent);
+}
+.proj-tag.purple{background:rgba(124,92,252,.1);border-color:rgba(124,92,252,.25);color:#a48bfd}
+.proj-tag.green{background:rgba(0,255,179,.06);border-color:rgba(0,255,179,.2);color:var(--accent3)}
+.proj-title{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:.5rem;letter-spacing:-.02em}
+.proj-desc{font-size:.85rem;color:var(--text-muted);line-height:1.6;margin-bottom:1rem}
+.proj-links{display:flex;gap:.75rem}
+.proj-link{
+  font-size:.8rem;font-weight:600;text-decoration:none;
+  display:flex;align-items:center;gap:.35rem;
+  transition:color .2s;color:var(--text-muted);
+}
+.proj-link:hover{color:var(--accent)}
+.proj-link.primary{color:var(--accent)}
+
+/* ── EXPERTISE ── */
+#expertise{background:var(--bg-surface)}
+.exp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.25rem}
+.exp-card{
+  padding:1.5rem;
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:var(--radius);transition:all .25s;
+  position:relative;overflow:hidden;
+}
+.exp-card:hover{border-color:var(--border-hover);background:var(--bg-card-hover)}
+.exp-num{
+  font-family:var(--mono);font-size:.7rem;color:var(--text-faint);
+  margin-bottom:.75rem;
+}
+.exp-icon{font-size:1.8rem;margin-bottom:.75rem}
+.exp-title{font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:.4rem}
+.exp-desc{font-size:.82rem;color:var(--text-muted);line-height:1.6}
+
+/* ── SERVICES ── */
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem}
+.svc-card{
+  padding:1.75rem;
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:var(--radius);transition:all .3s;
+  position:relative;overflow:hidden;
+}
+.svc-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  transform:scaleX(0);transform-origin:left;transition:transform .3s;
+}
+.svc-card:hover::after{transform:scaleX(1)}
+.svc-card:hover{border-color:var(--border-hover);transform:translateY(-3px)}
+.svc-icon{
+  width:48px;height:48px;border-radius:var(--radius-sm);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;margin-bottom:1.25rem;
+  background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.15);
+}
+.svc-title{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:.5rem}
+.svc-desc{font-size:.85rem;color:var(--text-muted);line-height:1.65}
+
+/* ── GITHUB ── */
+#github{background:var(--bg-surface)}
+.gh-header{display:flex;align-items:center;gap:1.5rem;margin-bottom:2.5rem;flex-wrap:wrap}
+.gh-avatar{
+  width:80px;height:80px;border-radius:50%;
+  border:2px solid rgba(0,212,255,.3);
+  display:flex;align-items:center;justify-content:center;
+  font-size:2.5rem;background:rgba(0,212,255,.05);
+  flex-shrink:0;
+}
+.gh-info h3{font-size:1.3rem;font-weight:700;color:var(--text);margin-bottom:.25rem}
+.gh-info p{font-size:.9rem;color:var(--text-muted)}
+.gh-stats{display:flex;gap:2rem;margin-top:.75rem;flex-wrap:wrap}
+.gh-stat{text-align:center}
+.gh-stat .n{font-size:1.2rem;font-weight:700;color:var(--accent);line-height:1}
+.gh-stat .l{font-size:.72rem;color:var(--text-muted);font-family:var(--mono)}
+.repos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem}
+.repo-card{
+  padding:1.25rem 1.5rem;
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:var(--radius);transition:all .25s;
+  display:flex;flex-direction:column;gap:.6rem;
+}
+.repo-card:hover{border-color:var(--border-hover);background:var(--bg-card-hover)}
+.repo-name{font-size:.9rem;font-weight:700;color:var(--accent);text-decoration:none}
+.repo-name:hover{text-decoration:underline}
+.repo-desc{font-size:.8rem;color:var(--text-muted);line-height:1.5;flex:1}
+.repo-meta{display:flex;align-items:center;gap:1rem;font-size:.75rem;color:var(--text-muted);font-family:var(--mono)}
+.repo-lang{display:flex;align-items:center;gap:.35rem}
+.lang-dot{width:10px;height:10px;border-radius:50%}
+.repo-stars{display:flex;align-items:center;gap:.35rem}
+.lang-bar{
+  display:flex;height:6px;border-radius:6px;overflow:hidden;
+  margin-top:1.5rem;gap:1px;
+}
+
+/* ── CONTACT ── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.contact-info{display:flex;flex-direction:column;gap:1rem}
+.contact-item{
+  display:flex;align-items:center;gap:1rem;
+  padding:1rem 1.25rem;
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:var(--radius);transition:all .25s;
+  text-decoration:none;
+}
+.contact-item:hover{border-color:var(--accent);background:rgba(0,212,255,.04)}
+.contact-item-icon{
+  width:42px;height:42px;min-width:42px;border-radius:var(--radius-sm);
+  display:flex;align-items:center;justify-content:center;font-size:1.2rem;
+  background:rgba(0,212,255,.08);
+}
+.contact-item-text .label{font-size:.75rem;color:var(--text-muted);font-family:var(--mono);margin-bottom:.1rem}
+.contact-item-text .val{font-size:.9rem;font-weight:600;color:var(--text)}
+.contact-form{display:flex;flex-direction:column;gap:1rem}
+.form-group{display:flex;flex-direction:column;gap:.4rem}
+.form-label{font-size:.8rem;color:var(--text-muted);font-family:var(--mono);letter-spacing:.05em}
+.form-input{
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:.8rem 1rem;
+  font-family:var(--font);font-size:.9rem;color:var(--text);
+  outline:none;transition:border .2s;width:100%;
+}
+.form-input:focus{border-color:var(--accent)}
+.form-input::placeholder{color:var(--text-faint)}
+textarea.form-input{resize:vertical;min-height:120px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-submit{
+  padding:.85rem 2rem;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;font-family:var(--font);font-weight:700;font-size:.9rem;
+  border:none;border-radius:var(--radius-sm);cursor:pointer;
+  transition:all .25s;letter-spacing:.03em;
+  box-shadow:0 0 30px rgba(0,212,255,.2);
+}
+.form-submit:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(0,212,255,.35)}
+.form-msg{padding:.7rem 1rem;border-radius:var(--radius-sm);font-size:.85rem;display:none}
+.form-msg.success{background:rgba(0,255,179,.08);border:1px solid rgba(0,255,179,.25);color:var(--accent3)}
+.form-msg.error{background:rgba(255,80,80,.08);border:1px solid rgba(255,80,80,.2);color:#ff8080}
+
+/* ── FOOTER ── */
+footer{
+  padding:2.5rem clamp(1.5rem,6vw,5rem);
+  border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+  background:var(--bg-surface);
+}
+.footer-left{font-size:.82rem;color:var(--text-muted)}
+.footer-left strong{color:var(--accent);font-family:var(--mono)}
+.footer-right{display:flex;gap:1.25rem}
+.footer-link{
+  font-size:.82rem;color:var(--text-muted);text-decoration:none;
+  transition:color .2s;font-family:var(--mono);
+}
+.footer-link:hover{color:var(--accent)}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-4{transition-delay:.4s}
+
+/* ── MOBILE NAV ── */
+.mobile-menu{
+  display:none;position:fixed;inset:0;z-index:99;
+  background:rgba(7,8,15,.97);backdrop-filter:blur(30px);
+  flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1.6rem;font-weight:700;color:var(--text);text-decoration:none;transition:color .2s}
+.mobile-menu a:hover{color:var(--accent)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .about-grid,.contact-grid{grid-template-columns:1fr;gap:3rem}
+  nav .nav-links{display:none}
+  .burger{display:flex}
+  .hero-stats{gap:2rem}
+}
+@media(max-width:600px){
+  .proj-grid{grid-template-columns:1fr}
+  .repos-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .hero-title{font-size:clamp(2.2rem,9vw,3rem)}
+  .nav-cta{display:none}
+}
+
+/* ── LOADING ── */
+#loading{
+  position:fixed;inset:0;z-index:9990;
+  background:var(--bg-base);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:1.5rem;
+  transition:opacity .5s,visibility .5s;
+}
+#loading.hide{opacity:0;visibility:hidden}
+.loading-logo{
+  font-family:var(--mono);font-size:1.5rem;color:var(--accent);
+  letter-spacing:.2em;
+}
+.loading-bar{
+  width:160px;height:1px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden;
+}
+.loading-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));animation:load 1.4s ease forwards}
+@keyframes load{from{width:0}to{width:100%}}
+.loading-text{font-family:var(--mono);font-size:.7rem;color:var(--text-muted);letter-spacing:.15em}
+</style>
+</head>
+<body>
+
+<!-- Loading Screen -->
+<div id="loading">
+  <div class="loading-logo">LF.DEV</div>
+  <div class="loading-bar"><div class="loading-fill"></div></div>
+  <div class="loading-text">INITIALIZING</div>
+</div>
+
+<!-- Custom Cursor -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- Background -->
+<div class="bg-grid"></div>
+<div class="bg-orb orb1"></div>
+<div class="bg-orb orb2"></div>
+<div class="bg-orb orb3"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">Deyvisson Augusto<span>_</span>deyvisson.dev</div>
+  <ul class="nav-links">
+    <li><a href="#about">Sobre</a></li>
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#projects">Projetos</a></li>
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#services">Serviços</a></li>
+    <li><a href="#github">GitHub</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Contato</a>
+  <div class="burger" id="burgerBtn" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="toggleMenu()">Sobre</a>
+  <a href="#stack" onclick="toggleMenu()">Stack</a>
+  <a href="#projects" onclick="toggleMenu()">Projetos</a>
+  <a href="#expertise" onclick="toggleMenu()">Expertise</a>
+  <a href="#services" onclick="toggleMenu()">Serviços</a>
+  <a href="#github" onclick="toggleMenu()">GitHub</a>
+  <a href="#contact" onclick="toggleMenu()">Contato</a>
+</div>
+
+<main>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-badge reveal"><span class="dot"></span> Disponível para projetos · Brasil / Remoto</div>
+    <h1 class="hero-title">
+      <span class="name reveal reveal-delay-1">Deyvisson Augusto</span>
+      <span class="role reveal reveal-delay-2">Full Stack & DevOps<br>AI Engineer.</span>
+    </h1>
+    <p class="hero-desc reveal reveal-delay-3">
+      Construo sistemas <strong>completos, escaláveis e inteligentes</strong> — do backend robusto em Laravel à automação com IA, passando por infraestrutura Docker e interfaces modernas em Angular.
+    </p>
+    <div class="hero-actions reveal reveal-delay-4">
+      <a href="#projects" class="btn-primary">Ver Projetos</a>
+      <a href="https://github.com" target="_blank" class="btn-ghost">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <a href="https://linkedin.com" target="_blank" class="btn-ghost">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="#contact" class="btn-ghost">Contato →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat reveal reveal-delay-1">
+        <div class="num" data-count="6">0</div>
+        <div class="lbl">anos de xp</div>
+      </div>
+      <div class="hero-stat reveal reveal-delay-2">
+        <div class="num" data-count="40">0</div>
+        <div class="lbl">projetos entregues</div>
+      </div>
+      <div class="hero-stat reveal reveal-delay-3">
+        <div class="num" data-count="15">0</div>
+        <div class="lbl">tecnologias</div>
+      </div>
+      <div class="hero-stat reveal reveal-delay-4">
+        <div class="num" data-count="8">0</div>
+        <div class="lbl">sistemas em produção</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section id="about">
+  <div class="container">
+    <div class="section-label reveal">01 — sobre mim</div>
+    <h2 class="section-title reveal">Engenheiro apaixonado por<br>construir sistemas reais.</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="reveal">Sou desenvolvedor <strong>Full Stack com foco em backend</strong>, apaixonado por construir sistemas que resolvem problemas reais com elegância técnica. Tenho forte experiência com <strong>PHP/Laravel, Angular 19, Docker e PostgreSQL</strong>.</p>
+        <p class="reveal">Ao longo dos anos, desenvolvi sistemas financeiros, plataformas administrativas, APIs robustas e soluções de automação com IA. Sigo princípios <strong>SOLID, DDD e Clean Architecture</strong> para garantir código sustentável.</p>
+        <p class="reveal">Atualmente focado em <strong>automação inteligente com n8n e IA</strong>, integração de sistemas e DevOps — construindo pipelines que eliminam trabalho manual e escalam com zero fricção.</p>
+        <div class="timeline">
+          <div class="tl-item reveal">
+            <div class="tl-dot"></div>
+            <div>
+              <div class="tl-year">2024 — Presente</div>
+              <div class="tl-title">Tech Lead & AI Engineer</div>
+              <div class="tl-desc">Liderança técnica, arquitetura de sistemas e automação com IA e n8n em escala empresarial.</div>
+            </div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-dot"></div>
+            <div>
+              <div class="tl-year">2022 — 2024</div>
+              <div class="tl-title">Desenvolvedor Full Stack Sênior</div>
+              <div class="tl-desc">Sistemas Laravel + Angular, Docker e APIs para clientes enterprise no setor financeiro.</div>
+            </div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-dot"></div>
+            <div>
+              <div class="tl-year">2020 — 2022</div>
+              <div class="tl-title">Desenvolvedor Backend Pleno</div>
+              <div class="tl-desc">APIs REST, banco de dados PostgreSQL, integrações de sistemas e automações de processos.</div>
+            </div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-dot"></div>
+            <div>
+              <div class="tl-year">2018 — 2020</div>
+              <div class="tl-title">Desenvolvedor Junior</div>
+              <div class="tl-desc">PHP, MySQL, desenvolvimento de sistemas web e primeiros passos com Docker e Linux.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="about-cards">
+        <div class="a-card reveal">
+          <div class="a-card-icon">🏗️</div>
+          <div class="a-card-title">Arquitetura Sólida</div>
+          <div class="a-card-desc">Sistemas projetados com SOLID, Clean Architecture e DDD — escaláveis e fáceis de manter.</div>
+        </div>
+        <div class="a-card reveal reveal-delay-1">
+          <div class="a-card-icon">🤖</div>
+          <div class="a-card-title">IA Aplicada</div>
+          <div class="a-card-desc">Automações inteligentes com n8n, OpenAI e integrações que eliminam tarefas repetitivas.</div>
+        </div>
+        <div class="a-card reveal reveal-delay-2">
+          <div class="a-card-icon">🐳</div>
+          <div class="a-card-title">DevOps & Containers</div>
+          <div class="a-card-desc">Docker, Podman, CI/CD e infraestrutura como código para deploy zero-downtime.</div>
+        </div>
+        <div class="a-card reveal reveal-delay-3">
+          <div class="a-card-icon">📊</div>
+          <div class="a-card-title">Sistemas Financeiros</div>
+          <div class="a-card-desc">Experiência com sistemas de gestão financeira, conciliação, relatórios e segurança de dados.</div>
+        </div>
+        <div class="a-card reveal reveal-delay-4">
+          <div class="a-card-icon">⚡</div>
+          <div class="a-card-title">Alta Performance</div>
+          <div class="a-card-desc">Otimização de queries, cache Redis, filas assíncronas e APIs que aguentam carga real.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STACK ══ -->
+<section id="stack">
+  <div class="container">
+    <div class="section-label reveal">02 — tecnologias</div>
+    <h2 class="section-title reveal">Stack tecnológica</h2>
+    <p class="section-sub reveal">Ferramentas que uso diariamente para construir sistemas completos, do backend ao deploy.</p>
+    <div class="stack-cats reveal" id="stackCats">
+      <button class="cat-btn active" onclick="filterStack('all',this)">Todos</button>
+      <button class="cat-btn" onclick="filterStack('backend',this)">Backend</button>
+      <button class="cat-btn" onclick="filterStack('frontend',this)">Frontend</button>
+      <button class="cat-btn" onclick="filterStack('devops',this)">DevOps</button>
+      <button class="cat-btn" onclick="filterStack('database',this)">Database</button>
+      <button class="cat-btn" onclick="filterStack('automation',this)">Automação</button>
+    </div>
+    <div class="stack-grid" id="stackGrid"></div>
+  </div>
+</section>
+
+<!-- ══ PROJECTS ══ -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label reveal">03 — projetos</div>
+    <h2 class="section-title reveal">Projetos em destaque</h2>
+    <p class="section-sub reveal">Sistemas reais com problemas reais resolvidos. Cada projeto foi construído para produção.</p>
+    <div class="proj-filters reveal" id="projFilters">
+      <button class="cat-btn active" onclick="filterProj('all',this)">Todos</button>
+      <button class="cat-btn" onclick="filterProj('Laravel',this)">Laravel</button>
+      <button class="cat-btn" onclick="filterProj('Angular',this)">Angular</button>
+      <button class="cat-btn" onclick="filterProj('Docker',this)">Docker</button>
+      <button class="cat-btn" onclick="filterProj('IA',this)">IA</button>
+      <button class="cat-btn" onclick="filterProj('n8n',this)">n8n</button>
+    </div>
+    <div class="proj-grid" id="projGrid"></div>
+  </div>
+</section>
+
+<!-- ══ EXPERTISE ══ -->
+<section id="expertise">
+  <div class="container">
+    <div class="section-label reveal">04 — expertise</div>
+    <h2 class="section-title reveal">Áreas de expertise</h2>
+    <p class="section-sub reveal">Domínio técnico construído projeto a projeto ao longo de 6 anos de desenvolvimento.</p>
+    <div class="exp-grid" id="expGrid"></div>
+  </div>
+</section>
+
+<!-- ══ SERVICES ══ -->
+<section id="services">
+  <div class="container">
+    <div class="section-label reveal">05 — serviços</div>
+    <h2 class="section-title reveal">O que posso fazer<br>por você.</h2>
+    <p class="section-sub reveal">Serviços sob medida para startups, empresas e freelancers high-ticket.</p>
+    <div class="svc-grid" id="svcGrid"></div>
+  </div>
+</section>
+
+<!-- ══ GITHUB ══ -->
+<section id="github">
+  <div class="container">
+    <div class="section-label reveal">06 — github</div>
+    <h2 class="section-title reveal">Contribuições open source</h2>
+    <div class="gh-header">
+      <div class="gh-avatar reveal">👨‍💻</div>
+      <div class="reveal">
+        <div class="gh-info">
+          <h3>deyvisson-augusto-dev</h3>
+          <p>Full Stack Developer · PHP · Laravel · Angular · DevOps · AI</p>
+          <div class="gh-stats">
+            <div class="gh-stat"><div class="n">47</div><div class="l">repos</div></div>
+            <div class="gh-stat"><div class="n">1.2k</div><div class="l">commits</div></div>
+            <div class="gh-stat"><div class="n">234</div><div class="l">stars</div></div>
+            <div class="gh-stat"><div class="n">89</div><div class="l">followers</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="repos-grid" id="reposGrid"></div>
+    <div style="margin-top:2rem">
+      <div class="lang-bar reveal" id="langBar"></div>
+      <div style="display:flex;gap:1.5rem;margin-top:.75rem;flex-wrap:wrap" id="langLegend"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label reveal">07 — contato</div>
+    <h2 class="section-title reveal">Vamos construir<br>algo incrível?</h2>
+    <p class="section-sub reveal">Estou disponível para projetos freelance, consultoria técnica e posições remotas. Respondo em até 24h.</p>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <a href="https://wa.me/5598981847188" target="_blank" class="contact-item reveal">
+          <div class="contact-item-icon">💬</div>
+          <div class="contact-item-text">
+            <div class="label">WhatsApp</div>
+            <div class="val">+55 (98) 9 8184-7188</div>
+          </div>
+        </a>
+        <a href="mailto:deyvison.15@hotmail.com" class="contact-item reveal reveal-delay-1">
+          <div class="contact-item-icon">✉️</div>
+          <div class="contact-item-text">
+            <div class="label">E-mail</div>
+            <div class="val">deyvison.15@hotmail.com</div>
+          </div>
+        </a>
+        <a href="https://linkedin.com" target="_blank" class="contact-item reveal reveal-delay-2">
+          <div class="contact-item-icon">🔗</div>
+          <div class="contact-item-text">
+            <div class="label">LinkedIn</div>
+            <div class="val">linkedin.com/in/deyvissonaugusto</div>
+          </div>
+        </a>
+        <a href="https://github.com" target="_blank" class="contact-item reveal reveal-delay-3">
+          <div class="contact-item-icon">🐙</div>
+          <div class="contact-item-text">
+            <div class="label">GitHub</div>
+            <div class="val">github.com/deyvissonAGP</div>
+          </div>
+        </a>
+        <div class="contact-item reveal reveal-delay-4" style="cursor:default;flex-direction:column;align-items:flex-start;gap:.5rem;padding:1.25rem">
+          <div style="font-size:.75rem;color:var(--text-muted);font-family:var(--mono)">DISPONIBILIDADE</div>
+          <div style="display:flex;align-items:center;gap:.5rem">
+            <div style="width:8px;height:8px;background:var(--accent3);border-radius:50%;animation:pulse 2s infinite"></div>
+            <span style="font-size:.9rem;font-weight:600;color:var(--text)">Disponível para novos projetos</span>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form reveal" id="contactForm" onsubmit="submitForm(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">NOME</label>
+            <input type="text" class="form-input" placeholder="Seu nome" id="fName" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">E-MAIL</label>
+            <input type="email" class="form-input" placeholder="seu@email.com" id="fEmail" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">ASSUNTO</label>
+          <select class="form-input" id="fSubject" style="cursor:pointer">
+            <option value="">Selecione o tipo de projeto</option>
+            <option>Sistema Full Stack</option>
+            <option>API REST / Backend</option>
+            <option>Consultoria DevOps</option>
+            <option>Automação com IA / n8n</option>
+            <option>Dashboard / Painel Admin</option>
+            <option>Refatoração de sistema legado</option>
+            <option>Outro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">MENSAGEM</label>
+          <textarea class="form-input" placeholder="Descreva seu projeto ou necessidade..." id="fMessage" required></textarea>
+        </div>
+        <div class="form-msg" id="formMsg"></div>
+        <button type="submit" class="form-submit">Enviar mensagem →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">© 2026 <strong>deyvisson.dev</strong> — Feito com 🖤 e muito PHP</div>
+  <div class="footer-right">
+    <a href="https://github.com" target="_blank" class="footer-link">GitHub</a>
+    <a href="https://linkedin.com" target="_blank" class="footer-link">LinkedIn</a>
+    <a href="mailto:deyvison.15@hotmail.com" class="footer-link">Email</a>
+  </div>
+</footer>
+
+<script>
+/* ── DATA ── */
+const stackData=[
+  {name:"Laravel",icon:"🔴",level:"Expert",years:"5a",cat:"backend",fill:96,glow:"rgba(255,80,80,.1)"},
+  {name:"PHP",icon:"🐘",level:"Expert",years:"6a",cat:"backend",fill:95,glow:"rgba(100,100,255,.1)"},
+  {name:"Angular 19",icon:"🅰️",level:"Avançado",years:"4a",cat:"frontend",fill:88,glow:"rgba(220,50,50,.1)"},
+  {name:"TypeScript",icon:"🔷",level:"Avançado",years:"4a",cat:"frontend",fill:85,glow:"rgba(50,150,255,.1)"},
+  {name:"PostgreSQL",icon:"🐘",level:"Expert",years:"5a",cat:"database",fill:92,glow:"rgba(80,120,255,.1)"},
+  {name:"Docker",icon:"🐳",level:"Avançado",years:"4a",cat:"devops",fill:90,glow:"rgba(0,150,255,.1)"},
+  {name:"Git",icon:"🌿",level:"Expert",years:"6a",cat:"devops",fill:96,glow:"rgba(255,100,0,.1)"},
+  {name:"Linux",icon:"🐧",level:"Avançado",years:"5a",cat:"devops",fill:88,glow:"rgba(255,200,0,.1)"},
+  {name:"n8n",icon:"🔄",level:"Avançado",years:"2a",cat:"automation",fill:85,glow:"rgba(255,100,200,.1)"},
+  {name:"OpenAI",icon:"🤖",level:"Intermediário",years:"2a",cat:"automation",fill:78,glow:"rgba(100,220,180,.1)"},
+  {name:"Podman",icon:"📦",level:"Intermediário",years:"2a",cat:"devops",fill:75,glow:"rgba(130,100,255,.1)"},
+  {name:"JWT",icon:"🔐",level:"Expert",years:"5a",cat:"backend",fill:94,glow:"rgba(255,180,0,.1)"},
+  {name:"APIs REST",icon:"🔌",level:"Expert",years:"6a",cat:"backend",fill:97,glow:"rgba(0,220,180,.1)"},
+  {name:"TailwindCSS",icon:"🎨",level:"Avançado",years:"3a",cat:"frontend",fill:87,glow:"rgba(0,180,220,.1)"},
+  {name:"HTML/CSS",icon:"🌐",level:"Expert",years:"6a",cat:"frontend",fill:95,glow:"rgba(255,80,0,.1)"},
+  {name:"JavaScript",icon:"🟡",level:"Avançado",years:"6a",cat:"frontend",fill:90,glow:"rgba(255,220,0,.1)"},
+];
+
+const projects=[
+  {
+    title:"FinanceAI Pro",
+    desc:"Sistema financeiro pessoal com IA para categorização automática de transações, previsões e relatórios inteligentes. Integrado com OpenAI e APIs bancárias.",
+    thumb:"💰",bg:"linear-gradient(135deg,#0f2027,#203a43,#2c5364)",
+    tags:["Laravel","Angular","IA","PostgreSQL","Docker"],
+    cats:["Laravel","Angular","IA","Docker"],
+    highlight:"Categoriza 97% das transações automaticamente via GPT-4"
+  },
+  {
+    title:"SweetManager",
+    desc:"Sistema completo para gestão de confeitaria — pedidos, estoque, produção, clientes e finanças. Dashboard em tempo real com relatórios de lucratividade.",
+    thumb:"🧁",bg:"linear-gradient(135deg,#1a0533,#2d1050,#3d1a6e)",
+    tags:["Laravel","Angular","PostgreSQL"],
+    cats:["Laravel","Angular"],
+    highlight:"Redução de 60% no tempo de gestão de pedidos"
+  },
+  {
+    title:"AdminPanel SaaS",
+    desc:"Plataforma administrativa multi-tenant com controle de permissões, auditorias, relatórios dinâmicos e integração com serviços externos via webhooks.",
+    thumb:"📊",bg:"linear-gradient(135deg,#0a1628,#1a2d5a,#0d3b8e)",
+    tags:["Laravel","Angular","Docker","JWT","PostgreSQL"],
+    cats:["Laravel","Angular","Docker"],
+    highlight:"Multi-tenant com isolamento completo de dados por empresa"
+  },
+  {
+    title:"FuelBot n8n",
+    desc:"Automação completa de abastecimento de frota — leitura de notas fiscais, integração com sistema de gestão, alertas e relatórios automáticos via n8n.",
+    thumb:"⛽",bg:"linear-gradient(135deg,#0f1b0f,#1a3a1a,#0d5c0d)",
+    tags:["n8n","Laravel","IA","APIs REST"],
+    cats:["n8n","Laravel","IA"],
+    highlight:"Eliminou 100% do processo manual de registro de abastecimentos"
+  },
+  {
+    title:"CreditoAPI",
+    desc:"API financeira robusta para análise de crédito — scoring, consultas em bureaus, rate limiting, autenticação JWT e documentação Swagger completa.",
+    thumb:"🏦",bg:"linear-gradient(135deg,#1a1000,#3d2800,#7a5000)",
+    tags:["Laravel","JWT","PostgreSQL","Docker"],
+    cats:["Laravel","Docker"],
+    highlight:"Processa 50k requisições/dia com latência < 80ms"
+  },
+  {
+    title:"AuthGuard JWT",
+    desc:"Sistema de autenticação e autorização enterprise com multi-factor, refresh tokens, blacklist, rate limiting por IP e logs de auditoria completos.",
+    thumb:"🔐",bg:"linear-gradient(135deg,#0f0020,#200040,#3a0080)",
+    tags:["Laravel","JWT","Docker","PostgreSQL"],
+    cats:["Laravel","Docker"],
+    highlight:"Zero vulnerabilidades em 12 auditorias de segurança"
+  },
+  {
+    title:"NewsHub",
+    desc:"Sistema de gerenciamento de notícias com editor rich text, categorias, tags, SEO automático, moderação e CDN para imagens. API para apps mobile.",
+    thumb:"📰",bg:"linear-gradient(135deg,#001a1a,#003333,#006666)",
+    tags:["Laravel","Angular","PostgreSQL","APIs REST"],
+    cats:["Laravel","Angular"],
+    highlight:"Gerencia 10k+ artigos com busca full-text em < 100ms"
+  },
+  {
+    title:"WorkflowAI",
+    desc:"Plataforma SaaS de automação de workflows com editor visual, integrações com 50+ serviços, execução em background com filas e monitoramento.",
+    thumb:"🤖",bg:"linear-gradient(135deg,#001020,#003060,#005090)",
+    tags:["Laravel","Angular","n8n","IA","Docker"],
+    cats:["Laravel","Angular","n8n","IA","Docker"],
+    highlight:"Automatizou + de 200 horas mensais de trabalho manual"
+  },
+];
+
+const expertise=[
+  {num:"01",icon:"🏗️",title:"Arquitetura Backend",desc:"Design de sistemas escaláveis com SOLID, Clean Architecture, DDD e padrões de projeto aplicados ao contexto real."},
+  {num:"02",icon:"⚡",title:"APIs de Alta Performance",desc:"APIs REST otimizadas com cache, filas assíncronas, rate limiting e documentação automatizada com Swagger/OpenAPI."},
+  {num:"03",icon:"🐳",title:"Containerização & DevOps",desc:"Docker, Podman, compose, redes, volumes e CI/CD pipelines. Deploy zero-downtime e rollback automático."},
+  {num:"04",icon:"💰",title:"Sistemas Financeiros",desc:"Conciliação bancária, relatórios contábeis, cálculo de juros, controle de caixa e segurança de dados financeiros."},
+  {num:"05",icon:"🤖",title:"Automação com IA",desc:"Workflows inteligentes com n8n, integração OpenAI, classificação automática, geração de documentos e agentes AI."},
+  {num:"06",icon:"🔗",title:"Integração de Sistemas",desc:"Conectar sistemas legados a APIs modernas. Webhooks, filas de mensagens, ETL e sincronização de dados."},
+  {num:"07",icon:"🅰️",title:"Frontend Angular",desc:"Interfaces reativas com Angular 19, RxJS, componentes reutilizáveis, lazy loading e performance otimizada."},
+  {num:"08",icon:"🗄️",title:"Banco de Dados",desc:"PostgreSQL, modelagem, indexação, queries otimizadas, migrations, seeds e estratégias de backup e replicação."},
+  {num:"09",icon:"🔄",title:"Refatoração de Legado",desc:"Modernizar sistemas antigos sem parar a operação — testes, extração de módulos, migração gradual e documentação."},
+  {num:"10",icon:"🛡️",title:"Segurança & Auth",desc:"JWT, OAuth, RBAC, auditoria de logs, criptografia de dados sensíveis e conformidade com LGPD."},
+  {num:"11",icon:"📊",title:"Dashboards & BI",desc:"Painéis analíticos em tempo real com gráficos dinâmicos, KPIs, relatórios exportáveis e drill-down interativo."},
+  {num:"12",icon:"🔍",title:"Debugging & Performance",desc:"Profiling, análise de queries lentas, memory leaks, otimização de carregamento e monitoramento proativo."},
+];
+
+const services=[
+  {icon:"🛠️",title:"Desenvolvimento Full Stack",desc:"Sistema completo do zero — backend Laravel, frontend Angular, banco de dados, APIs e deploy em produção."},
+  {icon:"🔌",title:"APIs REST Robustas",desc:"APIs documentadas, seguras, performáticas e escaláveis com autenticação, rate limiting e monitoramento."},
+  {icon:"🐳",title:"Consultoria DevOps",desc:"Dockerização, CI/CD, automação de deploys, monitoramento e melhoria da infraestrutura existente."},
+  {icon:"🤖",title:"Automação com IA & n8n",desc:"Workflows que eliminam tarefas manuais usando IA, integração de sistemas e processamento inteligente de dados."},
+  {icon:"📊",title:"Dashboards & Relatórios",desc:"Painéis administrativos com dados em tempo real, gráficos, KPIs e exportação para Excel/PDF."},
+  {icon:"💰",title:"Sistemas Financeiros",desc:"Módulos financeiros, conciliação bancária, fluxo de caixa, relatórios e integração com gateways de pagamento."},
+  {icon:"🔗",title:"Integração de Sistemas",desc:"Conectar plataformas distintas — ERPs, CRMs, e-commerces, APIs externas e sistemas legados."},
+  {icon:"🏥",title:"Refatoração de Legado",desc:"Modernizar sistemas antigos com tecnologia atual, melhorar performance e adicionar testes automatizados."},
+  {icon:"☁️",title:"SaaS Sob Demanda",desc:"Desenvolvimento de plataformas SaaS multi-tenant com gestão de assinaturas, onboarding e escalabilidade."},
+  {icon:"🎓",title:"Mentoria Técnica",desc:"Code review, definição de arquitetura, consultoria de stack e orientação de times de desenvolvimento."},
+];
+
+const repos=[
+  {name:"laravel-api-boilerplate",desc:"Boilerplate completo para APIs Laravel com autenticação JWT, rate limiting, Swagger, testes e Docker.",lang:"PHP",color:"#7a86b8",stars:42,updated:"há 2 dias"},
+  {name:"angular-admin-template",desc:"Template Angular 19 com autenticação, guards, interceptors, lazy loading e design system customizado.",lang:"TypeScript",color:"#3178c6",stars:38,updated:"há 1 semana"},
+  {name:"n8n-workflows-collection",desc:"Coleção de workflows n8n para automações comuns: email, Slack, Google Sheets, WhatsApp e APIs REST.",lang:"JSON",color:"#f5a623",stars:67,updated:"há 3 dias"},
+  {name:"docker-laravel-postgres",desc:"Ambiente Docker completo para desenvolvimento Laravel + PostgreSQL com Nginx, Redis e queue workers.",lang:"Dockerfile",color:"#384d54",stars:29,updated:"há 5 dias"},
+  {name:"finance-module-laravel",desc:"Módulo financeiro reutilizável para Laravel: contas, transações, categorias, relatórios e exportação.",lang:"PHP",color:"#7a86b8",stars:51,updated:"há 1 semana"},
+  {name:"angular-chart-components",desc:"Biblioteca de componentes de gráficos para Angular com integração Chart.js e dados em tempo real.",lang:"TypeScript",color:"#3178c6",stars:23,updated:"há 2 semanas"},
+];
+
+const langData=[
+  {name:"PHP",color:"#7a86b8",pct:42},
+  {name:"TypeScript",color:"#3178c6",pct:28},
+  {name:"JavaScript",color:"#f7df1e",pct:12},
+  {name:"HTML/CSS",color:"#e34f26",pct:10},
+  {name:"Dockerfile",color:"#384d54",pct:8},
+];
+
+/* ── RENDER STACK ── */
+function renderStack(filter){
+  const grid=document.getElementById('stackGrid');
+  grid.innerHTML='';
+  stackData.filter(s=>filter==='all'||s.cat===filter).forEach(s=>{
+    const gradMap={96:'#00d4ff',95:'#00d4ff',92:'#00ffb3',90:'#7c5cfc',88:'#7c5cfc',85:'#7c5cfc',78:'#f59e0b',75:'#f59e0b',94:'#00d4ff',97:'#00d4ff',87:'#7c5cfc'};
+    const c=gradMap[s.fill]||'#00d4ff';
+    grid.innerHTML+=`<div class="stack-card reveal" style="--card-glow:${s.glow}">
+      <div class="stack-icon">${s.icon}</div>
+      <div class="stack-name">${s.name}</div>
+      <div class="stack-level">${s.level} · ${s.years}</div>
+      <div class="skill-bar"><div class="skill-fill" style="width:${s.fill}%;background:linear-gradient(90deg,${c},${c}88)"></div></div>
+    </div>`;
+  });
+  observeReveal();
+}
+
+function filterStack(cat,btn){
+  document.querySelectorAll('#stackCats .cat-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderStack(cat);
+}
+
+/* ── RENDER PROJECTS ── */
+function renderProj(filter){
+  const grid=document.getElementById('projGrid');
+  grid.innerHTML='';
+  projects.filter(p=>filter==='all'||p.cats.includes(filter)).forEach(p=>{
+    const tags=p.tags.map((t,i)=>{
+      const cls=i%3===1?'purple':i%3===2?'green':'';
+      return `<span class="proj-tag ${cls}">${t}</span>`;
+    }).join('');
+    grid.innerHTML+=`<div class="proj-card reveal">
+      <div class="proj-thumb"><div class="proj-thumb-bg" style="background:${p.bg}"></div><div class="proj-thumb-icon">${p.thumb}</div></div>
+      <div class="proj-body">
+        <div class="proj-tags">${tags}</div>
+        <div class="proj-title">${p.title}</div>
+        <div class="proj-desc">${p.desc}</div>
+        <div style="font-size:.78rem;color:var(--accent3);margin-bottom:1rem;font-family:var(--mono)">⚡ ${p.highlight}</div>
+        <div class="proj-links">
+          <a href="#" class="proj-link primary">Demo ↗</a>
+          <a href="#" class="proj-link">GitHub →</a>
+        </div>
+      </div>
+    </div>`;
+  });
+  observeReveal();
+}
+
+function filterProj(f,btn){
+  document.querySelectorAll('#projFilters .cat-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderProj(f);
+}
+
+/* ── RENDER EXPERTISE ── */
+function renderExp(){
+  const g=document.getElementById('expGrid');
+  expertise.forEach((e,i)=>{
+    g.innerHTML+=`<div class="exp-card reveal" style="transition-delay:${(i%4)*.08}s">
+      <div class="exp-num">${e.num}</div>
+      <div class="exp-icon">${e.icon}</div>
+      <div class="exp-title">${e.title}</div>
+      <div class="exp-desc">${e.desc}</div>
+    </div>`;
+  });
+}
+
+/* ── RENDER SERVICES ── */
+function renderSvc(){
+  const g=document.getElementById('svcGrid');
+  services.forEach((s,i)=>{
+    g.innerHTML+=`<div class="svc-card reveal" style="transition-delay:${(i%3)*.08}s">
+      <div class="svc-icon">${s.icon}</div>
+      <div class="svc-title">${s.title}</div>
+      <div class="svc-desc">${s.desc}</div>
+    </div>`;
+  });
+}
+
+/* ── RENDER REPOS ── */
+function renderRepos(){
+  const g=document.getElementById('reposGrid');
+  repos.forEach((r,i)=>{
+    g.innerHTML+=`<div class="repo-card reveal" style="transition-delay:${(i%3)*.08}s">
+      <a href="#" class="repo-name">📁 ${r.name}</a>
+      <div class="repo-desc">${r.desc}</div>
+      <div class="repo-meta">
+        <span class="repo-lang"><span class="lang-dot" style="background:${r.color}"></span>${r.lang}</span>
+        <span class="repo-stars">⭐ ${r.stars}</span>
+        <span>🕐 ${r.updated}</span>
+      </div>
+    </div>`;
+  });
+  const lb=document.getElementById('langBar');
+  const ll=document.getElementById('langLegend');
+  langData.forEach(l=>{
+    lb.innerHTML+=`<div style="width:${l.pct}%;background:${l.color};height:100%;transition:width .8s"></div>`;
+    ll.innerHTML+=`<div style="display:flex;align-items:center;gap:.4rem;font-size:.75rem;color:var(--text-muted);font-family:var(--mono)"><span style="width:10px;height:10px;border-radius:50%;background:${l.color};display:inline-block"></span>${l.name} <strong style="color:var(--text)">${l.pct}%</strong></div>`;
+  });
+}
+
+/* ── CURSOR ── */
+const cur=document.getElementById('cursor');
+const ring=document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+function animRing(){
+  rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(animRing);
+}
+animRing();
+document.querySelectorAll('a,button,.proj-card,.stack-card,.svc-card,.exp-card,.a-card,.repo-card,.contact-item').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{
+    cur.style.width='18px';cur.style.height='18px';
+    ring.style.width='54px';ring.style.height='54px';
+    ring.style.borderColor='rgba(0,212,255,.6)';
+  });
+  el.addEventListener('mouseleave',()=>{
+    cur.style.width='10px';cur.style.height='10px';
+    ring.style.width='36px';ring.style.height='36px';
+    ring.style.borderColor='rgba(0,212,255,.35)';
+  });
+});
+
+/* ── INTERSECTION OBSERVER ── */
+function observeReveal(){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+  },{threshold:.1});
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el=>obs.observe(el));
+}
+
+/* ── COUNT-UP ── */
+function countUp(){
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const target=+el.dataset.count;
+    let n=0;const step=target/60;
+    const t=setInterval(()=>{
+      n=Math.min(n+step,target);
+      el.textContent=Math.round(n)+(target>10?'+':'');
+      if(n>=target)clearInterval(t);
+    },16);
+  });
+}
+
+/* ── MOBILE MENU ── */
+function toggleMenu(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+/* ── CONTACT FORM ── */
+function submitForm(e){
+  e.preventDefault();
+  const msg=document.getElementById('formMsg');
+  const name=document.getElementById('fName').value;
+  if(!name){msg.textContent='Por favor, preencha todos os campos.';msg.className='form-msg error';msg.style.display='block';return}
+  msg.textContent=`Mensagem enviada com sucesso! Obrigado, ${name}. Responderei em até 24h. 🚀`;
+  msg.className='form-msg success';
+  msg.style.display='block';
+  document.getElementById('contactForm').reset();
+  setTimeout(()=>msg.style.display='none',5000);
+}
+
+/* ── NAV SCROLL ── */
+window.addEventListener('scroll',()=>{
+  const nav=document.getElementById('navbar');
+  nav.style.background=window.scrollY>50?'rgba(7,8,15,.95)':'rgba(7,8,15,.7)';
+});
+
+/* ── LOADING ── */
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    document.getElementById('loading').classList.add('hide');
+    observeReveal();
+    countUp();
+  },1500);
+});
+
+/* ── INIT ── */
+renderStack('all');
+renderProj('all');
+renderExp();
+renderSvc();
+renderRepos();
+</script>
+</body>
+</html>
